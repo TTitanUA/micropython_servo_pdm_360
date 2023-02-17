@@ -70,7 +70,7 @@ dead_zone_us = 300
 servo = ServoPDM360(pwm=servo_pwm, min_us=min_us, max_us=max_us, dead_zone_us=dead_zone_us, freq=freq)
 ```
 
-After that, [basic methods] (https://github.com/TTitanUA/micropython_servo_pdm_360#doc_base) of controlling the servo will be available to you, which do not require pending tasks.
+After that, [basic methods](https://github.com/TTitanUA/micropython_servo_pdm_360#doc_base) of controlling the servo will be available to you, which do not require pending tasks.
 
 To access additional methods that require deferred execution, you need to initialize one of the child classes.
 Depending on which of the ways you prefer to handle pending tasks:
@@ -122,7 +122,7 @@ servo = ServoPDM360RP2Irq(pwm=servo_pwm, min_us=min_us, max_us=max_us, dead_zone
 ### A little about PDM
 PDM(pulse-duration modulation) is a process of power control by pulsing the power consumer on and off. By Wikipedia®
 In our case, it is used to control the servo. According to the pulse time, you can set the force and direction of rotation of the servo.
-ATTENTION: Unlike PWM, the control is not based on frequency, but on the duration of the pulse.
+**ATTENTION:** Unlike PWM, the control is not based on frequency, but on the duration of the pulse.
 You can read more here (with pictures): [wiki.amperka.ru](http://wiki.amperka.ru/articles:servo-pdm-continuous-rotation#%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F)
 
 For the correct operation of the servo, we need to set the following parameters:
@@ -148,7 +148,7 @@ An example of such a configuration can be found in the examples folder file [man
 List of parameters for servos:
 - **MG995_360** - `min_us=1350`, `max_us=8450`, `dead_zone_us=300`, `freq=50`
 
-**PLEASE**: If you find parameters for a servo that are not listed, submit them to me via [issue](https://github.com/TTitanUA/micropython_servo_pdm_360/issues).
+**PLEASE:** If you find parameters for a servo that are not listed, submit them to me via [issue](https://github.com/TTitanUA/micropython_servo_pdm_360/issues).
 
 ### ServoPDM360 constructor parameters
 **ServoPDM360RP2Async** and **ServoPDM360RP2Irq** inherit it and have the same parameters
