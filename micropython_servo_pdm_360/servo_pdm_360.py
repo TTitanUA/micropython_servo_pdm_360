@@ -8,7 +8,7 @@ class ServoPDM360:
     DIRECTION_CV = 1
     DIRECTION_STOP = 0
 
-    def __init__(self, pwm: PWM, min_us=1000, max_us=9000, dead_zone_us=300, freq=50, invert=False):
+    def __init__(self, pwm: PWM, min_us=500, max_us=3000, dead_zone_us=300, freq=50, invert=False):
         self.pwm = pwm
         self.pwm.freq(freq)
         self._low_duty_part = self.__get_low_duty_part(dead_zone_us, min_us, max_us)
@@ -22,9 +22,10 @@ class ServoPDM360:
     def __delete__(self, instance):
         self.deinit()
 
-    def set_duty(self, duty: int):
-        self._curr_duty = duty
-        self.pwm.duty_u16(duty)
+    def set_duty(self, duty_us: int):
+        self._curr_duty = duty_us
+        print(f"Setting duty to {duty_us}us")
+        self.pwm.duty_ns(duty_us * 1000)
 
     def turn_ccv(self, force: int = None):
         self._curr_dir = self.DIRECTION_CCV
