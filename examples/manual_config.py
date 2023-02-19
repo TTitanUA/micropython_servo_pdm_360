@@ -18,7 +18,7 @@ from micropython_servo_pdm_360 import ServoPDM360
 servo_pwm = PWM(Pin(21))
 freq = 50
 min_us = 0
-max_us = 10000
+max_us = (1000 / freq) * 1000
 iteration_time_ms = 500
 step_us = 50
 

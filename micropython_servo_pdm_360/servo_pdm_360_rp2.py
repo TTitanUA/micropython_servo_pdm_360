@@ -8,7 +8,7 @@ import utime
 class ServoPDM360RP2Async(ServoPDM360):
     """Wrapper for ServoPDM360 to add some async functionality to it, based on asyncio"""
 
-    def __init__(self, pwm: PWM, min_us=1000, max_us=9000, dead_zone_us=300, freq=50, invert=False):
+    def __init__(self, pwm: PWM, min_us=500, max_us=3000, dead_zone_us=150, freq=50, invert=False):
         super().__init__(pwm, min_us, max_us, dead_zone_us, freq, invert)
         self._task = None
 
@@ -91,7 +91,7 @@ class ServoPDM360RP2Irq(ServoPDM360):
     __tick_execution_time = 0
     """ This is a crunch.  Without it, the acceleration and deceleration phase will take longer than indicated."""
 
-    def __init__(self, pwm: PWM, min_us=1000, max_us=9000, dead_zone_us=300, freq=50, invert=False):
+    def __init__(self, pwm: PWM, min_us=500, max_us=3000, dead_zone_us=150, freq=50, invert=False):
         super().__init__(pwm, min_us, max_us, dead_zone_us, freq, invert)
         __move_time = 1000 // freq
         self._continue_action_at = 0

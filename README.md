@@ -62,9 +62,9 @@ servo_pwm = PWM(Pin(21))
 
 # Set the parameters of the servo pulses, more details in the "Documentation" section
 freq = 50
-min_us = 1350
-max_us = 8450
-dead_zone_us = 300
+min_us = 400
+max_us = 2550
+dead_zone_us = 150
 
 # create a servo object
 servo = ServoPDM360(pwm=servo_pwm, min_us=min_us, max_us=max_us, dead_zone_us=dead_zone_us, freq=freq)
@@ -108,9 +108,9 @@ servo_pwm = PWM(Pin(21))
 
 # Set the parameters of the servo pulses, more details in the "Documentation" section
 freq = 50
-min_us = 1350
-max_us = 8450
-dead_zone_us = 300
+min_us = 400
+max_us = 2550
+dead_zone_us = 150
 
 # create a servo object
 servo = ServoPDM360RP2Irq(pwm=servo_pwm, min_us=min_us, max_us=max_us, dead_zone_us=dead_zone_us, freq=freq)
@@ -135,18 +135,17 @@ Below I tried to graphically represent these parameters for the MG995_360 analog
 
 ![pdm configure](pdm_configure.png)
 
-As we can see in the figure, the servo begins to rotate at a pulse width of 1350 µs, and stops rotating at 8450 µs.
-Thus, we get the parameters `min_us=1350` and `max_us=8450`. Now we need to find the duration of the central zone.
-The figure shows that at a pulse length of 4750 µs, the servo stops rotating clockwise and stops.
-Further, at a pulse length of 5050 μs, the rotation in the opposite direction begins. Thus, the parameter `dead_zone_us=300` (5050-4750).
-3400 µs is the length of the operating range of the actuator when rotating in one direction.
+As we can see in the figure, the servo begins to rotate at a pulse width of 400 µs, and stops rotating at 2600 µs.
+Thus, we get the parameters `min_us=400` and `max_us=2550` (2600 - 50, since at 2600 the drive has already stopped). Now we need to find the duration of the central zone.
+The figure shows that at a pulse length of 1450 µs, the servo stops rotating clockwise and stops.
+Further, at a pulse length of 1600 μs, the rotation in the opposite direction begins. Thus the parameter `dead_zone_us=150` (1600-1450).
 
 Where can I get these parameters for a specific servo? It all depends on the manufacturer. But in most cases they are specified in the documentation.
-If not, we pick them up manually using the `set_duty` method and giving different values from 1000 to 9000 µs, in 50 µs increments.
+If not, we pick them up manually using the `set_duty` method and giving different values from 0 to 3000 µs, in 50 µs increments.
 An example of such a configuration can be found in the examples folder file [manual_config.py](https://github.com/TTitanUA/micropython_servo_pdm_360/tree/main/examples/manual_config.py).
 
 List of parameters for servos:
-- **MG995_360** - `min_us=1350`, `max_us=8450`, `dead_zone_us=300`, `freq=50`
+- **MG995_360** - `min_us=400`, `max_us=2550`, `dead_zone_us=150`, `freq=50`
 
 **PLEASE:** If you find parameters for a servo that are not listed, submit them to me via [issue](https://github.com/TTitanUA/micropython_servo_pdm_360/issues).
 
@@ -156,9 +155,9 @@ List of parameters for servos:
 | Parameter    | Type | Default | Description                  |
 |--------------|------|---------|------------------------------|
 | pwm          | PWM  | None    | PWM controller               |
-| min_us       | int  | 1000    | Minimum impulse time         |
-| max_us       | int  | 9000    | Maximum pulse time           |
-| dead_zone_us | int  | 300     | Duration of the central zone |
+| min_us       | int  | 500     | Minimum impulse time         |
+| max_us       | int  | 3000    | Maximum pulse time           |
+| dead_zone_us | int  | 150     | Duration of the central zone |
 | freq         | int  | 50      | Pulse frequency              |
 | invert       | bool | false   | Direction inversion          |
 
@@ -210,9 +209,9 @@ servo_pwm = PWM(Pin(21))
 
 # Set the parameters of the servo pulses, more details in the "Documentation" section
 freq = 50
-min_us = 1350
-max_us = 8450
-dead_zone_us = 300
+min_us = 400
+max_us = 2550
+dead_zone_us = 150
 
 # create a servo object
 servo = ServoPDM360RP2Async(pwm=servo_pwm, min_us=min_us, max_us=max_us, dead_zone_us=dead_zone_us, freq=freq)

@@ -8,7 +8,15 @@ from smooth_servo import SmoothLinear, SmoothEaseIn, SmoothEaseOut, SmoothEaseIn
 import uasyncio as asyncio
 
 servo_pwm = PWM(Pin(21))
-servo = ServoPDM360RP2Async(pwm=servo_pwm, min_us=1350, max_us=8450, freq=50)
+
+# Set the parameters of the servo pulses, more details in the "Documentation" section
+freq = 50
+min_us = 400
+max_us = 2550
+dead_zone_us = 150
+
+# create a servo object
+servo = ServoPDM360RP2Async(pwm=servo_pwm, min_us=min_us, max_us=max_us, dead_zone_us=dead_zone_us, freq=freq)
 
 # It is possible to use the following smooth variations:
 smooth_variations = [

@@ -8,16 +8,18 @@ class ServoPDM360:
     DIRECTION_CV = 1
     DIRECTION_STOP = 0
 
-    def __init__(self, pwm: PWM, min_us=500, max_us=3000, dead_zone_us=300, freq=50, invert=False):
+    def __init__(self, pwm: PWM, min_us=500, max_us=3000, dead_zone_us=150, freq=50, invert=False):
         self.pwm = pwm
         self.pwm.freq(freq)
+        self._move_period_ms = 1000 // freq
+        min_us = min_us if min_us > 0 else 0
+        max_us = max_us if min_us < max_us < (1000 // freq) * 1000 else 0
         self._low_duty_part = self.__get_low_duty_part(dead_zone_us, min_us, max_us)
         self._hi_duty_part = self.__get_hi_duty_part(dead_zone_us, min_us, max_us)
         self._invert = invert
         self._curr_duty = 0
         self._force = 100
         self._curr_dir = 0
-        self._move_period_ms = 1000 // freq
 
     def __delete__(self, instance):
         self.deinit()
