@@ -144,8 +144,9 @@ Where can I get these parameters for a specific servo? It all depends on the man
 If not, we pick them up manually using the `set_duty` method and giving different values from 0 to 3000 µs, in 50 µs increments.
 An example of such a configuration can be found in the examples folder file [manual_config.py](https://github.com/TTitanUA/micropython_servo_pdm_360/tree/main/examples/manual_config.py).
 
-List of parameters for servos:
+#### List of parameters for servos:
 - **MG995_360** - `min_us=400`, `max_us=2550`, `dead_zone_us=150`, `freq=50`
+- **[Com-Motor05(joy it FS90R)](https://joy-it.net/en/products/COM-Motor05)** - `min_us=700`, `max_us=2300`, `dead_zone_us=90`, `freq=50` - By [@philsuess](https://github.com/philsuess)
 
 **PLEASE:** If you find parameters for a servo that are not listed, submit them to me via [issue](https://github.com/TTitanUA/micropython_servo_pdm_360/issues).
 

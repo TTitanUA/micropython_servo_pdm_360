@@ -142,8 +142,10 @@ PDM(pulse-duration modulation) - это процесс управления мо
 Если нет, мо подбираем их вручную используя метод `set_duty` и задавая разные значения от 0 до 3000 мкс, с шагом в 50 мкс.
 Пример такой конфигурации можно посмотреть в папке примерах файл [manual_config.py](https://github.com/TTitanUA/micropython_servo_pdm_360/tree/main/examples/manual_config.py).
 
-Список параметров для сервоприводов:
+#### Список параметров для сервоприводов:
 - **MG995_360** - `min_us=400`, `max_us=2550`, `dead_zone_us=150`, `freq=50`
+- **[Com-Motor05(joy it FS90R)](https://joy-it.net/en/products/COM-Motor05)** - `min_us=700`, `max_us=2300`, `dead_zone_us=90`, `freq=50` - By [@philsuess](https://github.com/philsuess)
+
 
 **ПРОСЬБА:** Если вы нашли параметры для сервопривода, которых нет в списке, пожалуйста отправьте мне их через [issue](https://github.com/TTitanUA/micropython_servo_pdm_360/issues).
 
